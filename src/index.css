@@ -1,0 +1,213 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+/* Definition of the design system. All colors, gradients, fonts, etc should be defined here. 
+All colors MUST be HSL.
+*/
+
+@layer base {
+  :root {
+    /* Warm, friendly background gradient colors */
+    --background: 270 50% 98%;
+    --foreground: 240 10% 25%;
+
+    /* Soft card styling */
+    --card: 0 0% 100%;
+    --card-foreground: 240 10% 25%;
+
+    --popover: 0 0% 100%;
+    --popover-foreground: 240 10% 25%;
+
+    /* Primary: Soft purple/blue for AI companion feel */
+    --primary: 250 60% 65%;
+    --primary-foreground: 0 0% 100%;
+    --primary-light: 250 70% 85%;
+
+    /* Secondary: Gentle lavender */
+    --secondary: 260 40% 92%;
+    --secondary-foreground: 240 10% 25%;
+
+    /* Muted: Soft, calm backgrounds */
+    --muted: 240 20% 96%;
+    --muted-foreground: 240 8% 50%;
+
+    /* Accent: Warm coral/peach for friendly actions */
+    --accent: 20 80% 75%;
+    --accent-foreground: 240 10% 25%;
+
+    /* Success & Destructive */
+    --success: 140 50% 60%;
+    --success-foreground: 0 0% 100%;
+    
+    --destructive: 0 70% 65%;
+    --destructive-foreground: 0 0% 100%;
+
+    /* Borders & Inputs */
+    --border: 240 20% 90%;
+    --input: 240 20% 94%;
+    --ring: 250 60% 65%;
+
+    --radius: 1rem;
+
+    /* Gradients for background */
+    --gradient-bg: linear-gradient(135deg, hsl(270 50% 98%) 0%, hsl(20 60% 96%) 50%, hsl(0 0% 99%) 100%);
+    
+    /* Soft shadows */
+    --shadow-soft: 0 4px 20px -2px hsl(240 20% 80% / 0.15);
+    --shadow-card: 0 2px 16px -4px hsl(240 20% 70% / 0.12);
+    
+    /* Animation timing */
+    --transition-smooth: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+  }
+
+  .dark {
+    --background: 240 10% 12%;
+    --foreground: 240 10% 95%;
+
+    --card: 240 10% 15%;
+    --card-foreground: 240 10% 95%;
+
+    --popover: 240 10% 15%;
+    --popover-foreground: 240 10% 95%;
+
+    --primary: 250 60% 70%;
+    --primary-foreground: 240 10% 12%;
+    --primary-light: 250 50% 40%;
+
+    --secondary: 240 10% 20%;
+    --secondary-foreground: 240 10% 95%;
+
+    --muted: 240 10% 18%;
+    --muted-foreground: 240 8% 60%;
+
+    --accent: 20 70% 65%;
+    --accent-foreground: 240 10% 12%;
+
+    --success: 140 50% 55%;
+    --success-foreground: 0 0% 100%;
+
+    --destructive: 0 65% 60%;
+    --destructive-foreground: 0 0% 100%;
+
+    --border: 240 10% 25%;
+    --input: 240 10% 20%;
+    --ring: 250 60% 70%;
+
+    --gradient-bg: linear-gradient(135deg, hsl(240 10% 12%) 0%, hsl(240 12% 15%) 100%);
+    
+    --shadow-soft: 0 4px 20px -2px hsl(0 0% 0% / 0.3);
+    --shadow-card: 0 2px 16px -4px hsl(0 0% 0% / 0.25);
+  }
+}
+
+@layer base {
+  * {
+    @apply border-border;
+  }
+
+  body {
+    @apply bg-background text-foreground font-sans;
+    background: var(--gradient-bg);
+    background-attachment: fixed;
+  }
+}
+
+@layer components {
+  /* Chat animations */
+  .chat-slide-in {
+    animation: slideInRight 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+  }
+  
+  .chat-slide-out {
+    animation: slideOutRight 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+  }
+
+  /* Content fade in */
+  .content-fade-in {
+    animation: fadeInUp 0.5s cubic-bezier(0.4, 0, 0.2, 1);
+  }
+
+  /* Pulse animation for chat button */
+  .pulse-gentle {
+    animation: pulseGentle 2s cubic-bezier(0.4, 0, 0.6, 1) infinite;
+  }
+
+  /* Typing indicator */
+  .typing-dot {
+    animation: typingDot 1.4s infinite;
+  }
+  
+  .typing-dot:nth-child(2) {
+    animation-delay: 0.2s;
+  }
+  
+  .typing-dot:nth-child(3) {
+    animation-delay: 0.4s;
+  }
+}
+
+@layer utilities {
+  .shadow-soft {
+    box-shadow: var(--shadow-soft);
+  }
+  
+  .shadow-card {
+    box-shadow: var(--shadow-card);
+  }
+}
+
+@keyframes slideInRight {
+  from {
+    transform: translateX(100%);
+    opacity: 0;
+  }
+  to {
+    transform: translateX(0);
+    opacity: 1;
+  }
+}
+
+@keyframes slideOutRight {
+  from {
+    transform: translateX(0);
+    opacity: 1;
+  }
+  to {
+    transform: translateX(100%);
+    opacity: 0;
+  }
+}
+
+@keyframes fadeInUp {
+  from {
+    opacity: 0;
+    transform: translateY(20px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+@keyframes pulseGentle {
+  0%, 100% {
+    opacity: 1;
+    transform: scale(1);
+  }
+  50% {
+    opacity: 0.8;
+    transform: scale(1.05);
+  }
+}
+
+@keyframes typingDot {
+  0%, 60%, 100% {
+    transform: translateY(0);
+    opacity: 0.4;
+  }
+  30% {
+    transform: translateY(-10px);
+    opacity: 1;
+  }
+}
